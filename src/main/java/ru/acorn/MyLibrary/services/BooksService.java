@@ -53,9 +53,9 @@ public class BooksService {
     @Transactional
     public void update(Book updatedBook, int id){//эта книга приходит с формы, поэтому hibernate ee не знает, поэтому метод save
         Book bookToBeUpdated = booksRepository.findById(id).get();
-        bookToBeUpdated.setId(id);
-        bookToBeUpdated.setOwner(bookToBeUpdated.getOwner());//сущность пришедшая с формы owner - null, поэтому set,чтобы не потерять связь
-        booksRepository.save(bookToBeUpdated);
+        updatedBook.setId(id);
+        updatedBook.setOwner(bookToBeUpdated.getOwner());//сущность пришедшая с формы owner - null, поэтому set,чтобы не потерять связь
+        booksRepository.save(updatedBook);
     }
     @Transactional
     public void delete(int id){

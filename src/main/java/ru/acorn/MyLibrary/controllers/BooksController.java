@@ -49,7 +49,7 @@ public class BooksController {
     }
 
     @GetMapping("/new")
-    public String newPerson(@ModelAttribute("book") Book book) {
+    public String newBook  (@ModelAttribute("book") Book book) {
         return "books/new";
     }
 
@@ -72,6 +72,9 @@ public class BooksController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("book") BindingResult bindingResult,
                          @PathVariable("id") int id, @Valid Book book) {
+        if (bindingResult.hasErrors())
+            return "books/edit";
+
         booksService.update(book, id);
         return "redirect:/books";
     }
@@ -91,13 +94,15 @@ public class BooksController {
     @PatchMapping("/{id}/assign")
     public String assign(@PathVariable("id") int id,
                          @ModelAttribute("person") Person selectedPerson) {
+        //у selected person только id, остальное null
         booksService.assign(id, selectedPerson);
         return "redirect:/books/" + id;
     }
     @GetMapping("/search")
-    public String searchPage(){
+    public String searchPage()  {
         return "books/search";
     }
+
     @PostMapping("/search")
     public String makeSearch(Model model, @RequestParam(value = "query") String query){
         model.addAttribute("books",booksService.searchByTitle(query));
