@@ -24,47 +24,100 @@ and efficient way to manage and organize library resources.
 Use this [link](http://mylibrary-env.eba-6fniism4.us-east-1.elasticbeanstalk.com): 
 
 ## Endpoints
-<font color='#fa8072'>Sensor: /sensors - general path
+<font color='#fa8072'>Person: /people - general path
 
-* <font color='#5f9ea0'> POST /sensors/registration (adding sensor) 
+* <font color='#5f9ea0'> GET /people
 </font>
 
-If placed on port 7070, the request will look like:
-**localhost:7070/sensors/registration**
-
-Json example:
-{
-"name" : "SensorLA"
-}
-
-* <font color='#5f9ea0'> DELETE /registration/{name}</font>
-
-  example: /registration/SensorLA (it will delete sensor by name)
-
-<font color='#fa8072'>Measurements: /measurements - general path</font>
+Returns list of people
 
 If placed on port 7070, the request will look like:
-**localhost:7070/measurements**
+**localhost:7070/people**
 
-* <font color='#5f9ea0'>POST /measurements/add (adding measurements to a sensor by name)</font>
-
-Json example: {
-"value" : 12,
-"raining" : true,
-"sensor": {
-"name" : "SensorLA"
-}
-}
+* <font color='#5f9ea0'> GET /people/{id}</font>
 
 
-* <font color='#5f9ea0'>GET /measurements</font>
-  localhost:7070/measurements
+  Example: /registration/1 (it will find person by id=1)
 
-List all measurements
+* <font color='#5f9ea0'> GET /people/new</font>
 
-* <font color='#5f9ea0'>GET /measurements/rainyDaysCount</font>
+ 
+Returns person creation page
 
-Count rainy days
+* <font color='#5f9ea0'> POST /people/create</font>
+
+
+Creation of a new person
+
+* <font color='#5f9ea0'> GET /people/{id}/edit</font>
+
+ 
+Returns person edition page
+
+* <font color='#5f9ea0'> PATH /people/{id}/</font>
+
+ 
+Edit person
+
+* <font color='#5f9ea0'> DELETE /people/{id}/</font>
+
+
+  Delete person
+
+<font color='#fa8072'>Books: /books - general path</font>
+
+If placed on port 7070, the request will look like:
+**localhost:7070/books**
+
+* <font color='#5f9ea0'> GET /books</font>
+Returns list of books. You can add pagination, limit and sorting
+For example, /books?page=1&books_per_page=5&sort_by_Year=true
+
+* <font color='#5f9ea0'> GET /books/{id}</font>
+
+Returns book by id
+
+* <font color='#5f9ea0'> GET /books/new</font>
+
+Returns book creation page
+
+* <font color='#5f9ea0'> POST /books </font>
+
+Create a new book
+
+* <font color='#5f9ea0'> GET /books/{id}/edit </font>
+
+Returns book creation page by id
+
+* <font color='#5f9ea0'> PATCH /books/{id} </font>
+
+Edit book
+
+* <font color='#5f9ea0'> DELETE /books/{id} </font>
+
+Delete book
+
+* <font color='#5f9ea0'> PATCH /books/{id}/release</font>
+
+Release book by id
+
+* <font color='#5f9ea0'> PATCH /books/{id}/assign</font>
+
+Assign book by id
+
+* <font color='#5f9ea0'> GET /books/search</font>
+
+Returns searching page
+
+* <font color='#5f9ea0'> POST /books/search</font>
+
+Find a book
+
+
+
+
+
+
 
 
 
