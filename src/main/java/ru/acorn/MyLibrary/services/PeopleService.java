@@ -55,13 +55,11 @@ public class PeopleService {
     public List<Book> getBooksByPersonId(int id){
         Optional <Person> foundPerson = peopleRepository.findById(id);
         if(foundPerson.isPresent()){
-            Hibernate.initialize(foundPerson.get().getBooks());//здесь необязательно,
-            //но если мы вынесем эту логику за пределы транзакции, то из-за ленивой загрузки объект будет пустой
-            //проверка на просроченность
+            Hibernate.initialize(foundPerson.get().getBooks());
             foundPerson.get().getBooks().forEach(book ->{
                 long expiredTime = Math.abs(book.getTakenAt().getTime() - new Date().getTime());
-                if(expiredTime > 864000000)//10 суток в миллисекундах
-                    book.setExpired(true);//книгу просрочили
+                if(expiredTime > 864000000)
+                    book.setExpired(true);
             });
             return foundPerson.get().getBooks();
         }

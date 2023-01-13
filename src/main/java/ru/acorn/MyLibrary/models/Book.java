@@ -10,7 +10,8 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
-@Table(name = "book")
+@Table(name = "book", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "person_id")})
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,7 +56,7 @@ public class Book {
 
     @Getter
     @Setter
-    @Transient //hibernate не видит поля с такой аннотацией
+    @Transient
     private boolean expired = false;
 
     public Book(String title, String author, int year) {

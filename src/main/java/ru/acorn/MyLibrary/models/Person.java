@@ -36,7 +36,6 @@ public class Person {
     @Setter
     List<Book> books;
 
-
     public Person() {
     }
 

@@ -1,6 +1,7 @@
 package ru.acorn.MyLibrary.controllers;
 
 import jakarta.validation.Valid;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import ru.acorn.MyLibrary.utils.PersonValidator;
 
 @Controller
 @RequestMapping("/people")
+@Log4j
 public class PeopleController {
 
     private final PeopleService peopleService;
@@ -46,8 +48,10 @@ public class PeopleController {
     public String create(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult) {
         personValidator.validate(person, bindingResult);
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
+            log.error(bindingResult.getAllErrors());
             return "people/new";
+        }
 
         peopleService.save(person);
         return "redirect:/people";
@@ -63,8 +67,10 @@ public class PeopleController {
     public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
                          @PathVariable("id") int id) {
         personValidator.validate(person, bindingResult);
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
+            log.error(bindingResult.getAllErrors());
             return "people/edit";
+        }
 
         peopleService.update(person, id);
         return "redirect:/people";
