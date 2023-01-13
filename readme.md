@@ -2,7 +2,7 @@
 ## Review
 This is an online library, a CRUD (Create, Read, Update, Delete) application 
 where users can add, edit, and delete person cards and books. 
-They can also assign books to specific individuals. This application is deployed 
+They can also assign books to specific individuals. Or just search books. This application is deployed 
 on an Amazon Web Services (AWS) Elastic Compute Cloud (EC2) and can be accessed 
 through the provided [link](http://mylibrary-env.eba-6fniism4.us-east-1.elasticbeanstalk.com). 
 It provides a user-friendly 
@@ -21,7 +21,13 @@ and efficient way to manage and organize library resources.
 * Log4j
 
 ## How to run
-Use this [link](http://mylibrary-env.eba-6fniism4.us-east-1.elasticbeanstalk.com): 
+* Clone repository
+* You should have docker and maven
+* Just use start.sh
+* To stop application use stop.sh
+
+### If you want to run it on local machine:
+
 
 ## Endpoints
 <font color='#fa8072'>Person: /people - general path
